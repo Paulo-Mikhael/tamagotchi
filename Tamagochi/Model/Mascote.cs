@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tamagochi
+namespace Tamagochi.Model
 {
 	public class Mascote
 	{
+		[Key]
+		public int Id { get; set; }
+
 		public string Nome { get; set; }
 
 		public int Peso { get; set; }
 
 		public int Altura { get; set; }
 
-		public List<object?> Habilidades { get; set; }
+		public virtual List<Abilities> Habilidades { get; set; }
 	} 
 }
