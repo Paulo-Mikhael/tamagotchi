@@ -16,5 +16,7 @@ namespace Tamagochi.Model
 		[Required]
 		public int HabilidadeId { get; set; }
 		public virtual Ability? Habilidade { get; set; }
+
+		public string Situcao { get; set; }
 	}
 }

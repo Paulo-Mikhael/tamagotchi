@@ -94,6 +94,7 @@ namespace Tamagochi.View
             var api = new CallApi();
             var main = new MainScreen();
             var context = new TamagotchiContext();
+            var dal = new MascoteDAL(context);
 
             main.CustomTitle($"Informações do {mascote.Nome}");
             Console.WriteLine("");
@@ -118,9 +119,7 @@ namespace Tamagochi.View
 
             if (userChoose == "1")
             {
-				var dal = new MascoteDAL(context);
-                dal.AdicionarMascote(mascote);
-
+                dal.AtualizaSituacaoPokemon(mascote.Id);
 				Console.WriteLine("Mascote adotado! Redirecionando para o menu...");
                 Thread.Sleep(2000);
                 Console.Clear();
@@ -143,16 +142,28 @@ namespace Tamagochi.View
             main.CustomTitle("Mascotes adotados");
             Console.WriteLine("");
 
-            var pokeUser = dal.RetornaPokemonsUsuario();
+            var pokeUser = dal.RetornaPokemonsAdotados();
             int idAnterior = 0;
             foreach (var item in pokeUser)
             {
                 if (idAnterior != item.MascoteId)
                 {
-					var pokeNome = dal.RetornaMascotePorId(item.MascoteId);
+                    var pokemon = dal.RetornaMascotePorId(item.MascoteId);
+                    var pokeHabilidades = dal.RetornaHabilidadesPokemon(item.MascoteId);
                     Categoria("--");
-					api.RetornaPokemon(pokeNome);
-                    idAnterior = item.MascoteId;
+					Console.WriteLine($"Nome: {pokemon.Nome}");
+					Console.WriteLine($"Peso: {pokemon.Peso}");
+					Console.WriteLine($"Altura: {pokemon.Altura}");
+					Console.WriteLine("");
+					Console.WriteLine("Habilidades:");
+
+                    foreach (var habilidadeId in pokeHabilidades)
+                    {
+                        var habilidade = dal.RetornaHabilidadePorId(habilidadeId);
+                        Console.WriteLine(habilidade.Nome);
+                    }
+
+					idAnterior = item.MascoteId;
 				}
             }
 

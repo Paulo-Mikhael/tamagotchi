@@ -63,6 +63,7 @@ namespace Tamagochi.Controller
 				Console.WriteLine($"Nome: {mascote.Nome}");
                 Console.WriteLine($"Peso: {mascote.Peso}");
                 Console.WriteLine($"Altura: {mascote.Altura}");
+                Console.WriteLine("");
                 Console.WriteLine("Habilidades:");
 
                 foreach (var item in pokeInfo.abilities)
@@ -80,16 +81,17 @@ namespace Tamagochi.Controller
 					{
 						dal = new MascoteDAL(context);
 						var ability = new Ability();
-						var novoPokemon = new PokemonsUsuario();
+						var adoptedPokemon = new PokemonsUsuario();
 
 						ability.Nome = item["ability"]["name"];
 
 						dal.AdicionarHabilidade(ability);
 
-						novoPokemon.MascoteId = mascote.Id;
-						novoPokemon.HabilidadeId = ability.Id;
+						adoptedPokemon.MascoteId = mascote.Id;
+						adoptedPokemon.HabilidadeId = ability.Id;
+                        adoptedPokemon.Situcao = "Em espera";
 
-						dal.AdicionarPokemon(novoPokemon);
+						dal.AdicionarPokemon(adoptedPokemon);
 					}
 				}
 
