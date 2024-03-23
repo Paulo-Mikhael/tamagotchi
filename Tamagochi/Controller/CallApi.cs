@@ -42,7 +42,7 @@ namespace Tamagochi.Controller
         {
             var mascote = new Mascote();
 
-            var conjuntoHabilidades = new Abilities();
+            var conjuntoHabilidades = new PokemonsUsuario();
 
             var context = new TamagotchiContext();
 
@@ -60,30 +60,40 @@ namespace Tamagochi.Controller
                 mascote.Peso = pokeInfo.weight;
                 mascote.Altura = pokeInfo.height;
 
-                foreach (var item in pokeInfo.abilities)
-                {
-					var ability = new Ability();
-
-					ability.Nome = item["ability"]["name"]; //Coloca os itens pegos em Habilidades
-
-                    conjuntoHabilidades.ConjuntoHabilidades = new List<Ability>();
-                    conjuntoHabilidades.ConjuntoHabilidades.Add(ability);
-                }
-
-                mascote.Habilidades = new List<Abilities>(); //Inicializa uma nova lista de objetos
-
-                mascote.Habilidades.Add(conjuntoHabilidades);
-
 				Console.WriteLine($"Nome: {mascote.Nome}");
                 Console.WriteLine($"Peso: {mascote.Peso}");
                 Console.WriteLine($"Altura: {mascote.Altura}");
                 Console.WriteLine("Habilidades:");
 
-                foreach (var habilidade in conjuntoHabilidades.ConjuntoHabilidades)
+                foreach (var item in pokeInfo.abilities)
                 {
-                    Console.WriteLine(habilidade.Nome);
+                    Console.WriteLine(item["ability"]["name"]);
                 }
-                return mascote;
+
+				var dal = new MascoteDAL(context);
+
+                if (dal.RetornaMascotePorNome(mascote.Nome) == null)
+                {
+					dal.AdicionarMascote(mascote);
+
+					foreach (var item in pokeInfo.abilities)
+					{
+						dal = new MascoteDAL(context);
+						var ability = new Ability();
+						var novoPokemon = new PokemonsUsuario();
+
+						ability.Nome = item["ability"]["name"];
+
+						dal.AdicionarHabilidade(ability);
+
+						novoPokemon.MascoteId = mascote.Id;
+						novoPokemon.HabilidadeId = ability.Id;
+
+						dal.AdicionarPokemon(novoPokemon);
+					}
+				}
+
+				return mascote;
             }
 
             return null;

@@ -21,15 +21,44 @@ public class MascoteDAL
 		return _context.Mascotes.ToList();
 	}
 
-	public void AdicionarMascote(Mascote mascote)
+	public Mascote? RetornaMascotePorNome(string nome)
 	{
-		_context.Mascotes.Add(mascote);
+		var mascote = _context.Mascotes.FirstOrDefault(item => item.Nome == nome);
+
+		if (mascote == null)
+		{
+			return null;
+		}
+
+		return mascote;
+	}
+
+	public string? RetornaMascotePorId(int id)
+	{
+		var mascote = _context.Mascotes.FirstOrDefault(item => item.Id == id);
+
+		if (mascote == null)
+		{
+			return null;
+		}
+
+		return mascote.Nome;
+	}
+
+	public void AdicionarPokemon(PokemonsUsuario pokemon)
+	{
+		_context.PokemonsUsuarios.Add(pokemon);
 		_context.SaveChanges();
 	}
 
-	public void AdicionarConjunto(Abilities conjunto)
+	public IEnumerable<PokemonsUsuario?> RetornaPokemonsUsuario()
 	{
-		_context.ConjuntoHabildades.Add(conjunto);
+		return _context.PokemonsUsuarios.ToList();
+	}
+
+	public void AdicionarMascote(Mascote mascote)
+	{
+		_context.Mascotes.Add(mascote);
 		_context.SaveChanges();
 	}
 

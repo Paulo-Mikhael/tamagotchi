@@ -14,6 +14,6 @@ namespace Tamagochi.Model
 
 		public string Nome { get; set; }
 
-		public virtual Abilities ConjuntoHabilidades { get; set; }
+		public virtual List<PokemonsUsuario?> PokemonsUsuario { get; set; }
 	}
 }

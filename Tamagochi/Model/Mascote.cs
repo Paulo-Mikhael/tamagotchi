@@ -18,6 +18,6 @@ namespace Tamagochi.Model
 
 		public int Altura { get; set; }
 
-		public virtual List<Abilities> Habilidades { get; set; }
+		public virtual List<PokemonsUsuario?> PokemonsUsuario { get; set; }
 	} 
 }

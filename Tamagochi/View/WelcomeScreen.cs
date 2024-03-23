@@ -98,18 +98,8 @@ namespace Tamagochi.View
             main.CustomTitle($"Informações do {mascote.Nome}");
             Console.WriteLine("");
             Categoria("Características");
-            Console.WriteLine($"Nome: {mascote.Nome}");
-            Console.WriteLine($"Peso: {mascote.Peso}");
-            Console.WriteLine($"Altura: {mascote.Altura}");
-            Console.WriteLine($"\r\nHabilidades:");
 
-            foreach (var item in mascote.Habilidades)
-            {
-                foreach (var habilidade in item.ConjuntoHabilidades)
-                {
-                    Console.WriteLine(habilidade.Nome);
-                }
-            }
+            api.RetornaPokemon(mascote.Nome);
 
             Console.WriteLine("");
             Categoria("Menu");
@@ -148,31 +138,22 @@ namespace Tamagochi.View
             var context = new TamagotchiContext();
             var dal = new MascoteDAL(context);
             var main = new MainScreen();
+            var api = new CallApi();
+
             main.CustomTitle("Mascotes adotados");
             Console.WriteLine("");
 
-            var mascotes = dal.RetornaMascotes();
-
-            foreach (var item in mascotes)
+            var pokeUser = dal.RetornaPokemonsUsuario();
+            int idAnterior = 0;
+            foreach (var item in pokeUser)
             {
-                var nome = item.Nome;
-                var peso = item.Peso;
-                var altura = item.Altura;
-                var habilidades = item.Habilidades;
-
-                Categoria(nome);
-                Console.WriteLine($"Nome: {nome}");
-                Console.WriteLine($"Peso: {peso}");
-                Console.WriteLine($"Altura: {altura}");
-                Console.WriteLine($"\r\nHabilidades:");
-
-                /*foreach (var conjunto in habilidades)
+                if (idAnterior != item.MascoteId)
                 {
-                    foreach (var habilidade in conjunto.ConjuntoHabilidades)
-                    {
-                        Console.WriteLine(habilidade.Nome);
-                    }
-                }*/
+					var pokeNome = dal.RetornaMascotePorId(item.MascoteId);
+                    Categoria("--");
+					api.RetornaPokemon(pokeNome);
+                    idAnterior = item.MascoteId;
+				}
             }
 
             Console.WriteLine("");

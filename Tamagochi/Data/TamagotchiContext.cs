@@ -15,11 +15,16 @@ namespace Tamagochi.Data
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(ConnectionString);
+			optionsBuilder.UseSqlServer(ConnectionString).UseLazyLoadingProxies();
+		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<PokemonsUsuario>().HasKey(item => new { item.MascoteId, item.HabilidadeId});
 		}
 
 		public DbSet<Mascote> Mascotes { get; set; }
-		public DbSet<Abilities> ConjuntoHabildades { get; set; }
+		public DbSet<PokemonsUsuario> PokemonsUsuarios { get; set; }
 		public DbSet<Ability> Habilidades { get; set; }
 	}
 }

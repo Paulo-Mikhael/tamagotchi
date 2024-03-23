@@ -18,13 +18,6 @@ class Program //Nome da classe que abriga o método principal
 		var context = new TamagotchiContext();
 		var dal = new MascoteDAL(context);
 
-		var mascotes = dal.RetornaMascotes();
-
-		foreach (var item in mascotes)
-		{
-			Console.WriteLine(item.Nome);
-		}
-
 		var main = new MainScreen();
 
 		main.CustomTitle("TAMAGOTCHI - BICHINHO VIRTUAL");
