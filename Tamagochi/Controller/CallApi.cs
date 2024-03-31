@@ -60,7 +60,7 @@ namespace Tamagochi.Controller
                 mascote.Peso = pokeInfo.weight;
                 mascote.Altura = pokeInfo.height;
 
-				Console.WriteLine($"Nome: {mascote.Nome}");
+				Console.WriteLine($"Nome: {mascote.Nome.ToUpper()}");
                 Console.WriteLine($"Peso: {mascote.Peso}");
                 Console.WriteLine($"Altura: {mascote.Altura}");
                 Console.WriteLine("");

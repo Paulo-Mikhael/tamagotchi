@@ -72,6 +72,18 @@ public class MascoteDAL
 		return _context.PokemonsUsuarios.Where(item => item.Situcao == "Adotado").ToList();
 	}
 
+	public PokemonsUsuario? RetornaPokemonUsuario(int id)
+	{
+		var mascote = _context.PokemonsUsuarios.FirstOrDefault(item => item.MascoteId == id);
+
+		if (mascote == null)
+		{
+			return null;
+		}
+
+		return mascote;
+	}
+
 	public void AdicionarPokemon(PokemonsUsuario pokemon)
 	{
 		_context.PokemonsUsuarios.Add(pokemon);
