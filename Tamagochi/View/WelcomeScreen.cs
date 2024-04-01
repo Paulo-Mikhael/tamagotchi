@@ -223,107 +223,166 @@ namespace Tamagochi.View
             main.CustomTitle($"Status do mascote {pokemon.ToUpper()}");
             Console.WriteLine("");
             Console.WriteLine($"Saúde: {random.Next(0, 101)}");
-            Console.WriteLine("");
             Console.WriteLine($"Temperamento agora: {temperamento}");
-            Categoria("Você deseja");
-            Console.WriteLine($"1 - Fazer carinho em {pokemon}");
+            Console.WriteLine("");
+
+			Categoria("Você deseja");
+			Console.WriteLine($"1 - Fazer carinho em {pokemon}");
 			Console.WriteLine($"2 - Brincar com {pokemon}");
 			Console.WriteLine($"3 - Alimentar {pokemon}");
 			Console.WriteLine("4 - Sair");
+			Console.WriteLine("");
 
-            var userChoose = Console.ReadLine();
+			var userChoose = Console.ReadLine();
 
-            while (userChoose != "1" && userChoose != "2" && userChoose != "3" && userChoose != "4")
-            {
-                Console.WriteLine("");
-                Console.WriteLine("Escolha uma opção");
+			while (userChoose != "1" && userChoose != "2" && userChoose != "3" && userChoose != "4")
+			{
+				Console.WriteLine("");
+				Console.WriteLine("Escolha uma opção");
 				userChoose = Console.ReadLine();
 			}
 
-            if (userChoose == "2")
+            if (userChoose == "4")
             {
-                switch (temperamento)
-                {
-                    case "Enfurecido":
-                        Console.WriteLine("");
-                        Console.WriteLine($"{pokemon.ToUpper()} não quer brincar e está mais enfurecido!");
-                        break;
-					case "Agitado":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} adorou a brincadeira e está mais agitado");
-						break;
-					case "Confortável":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} brinca um pouco mas logo se encontra deitado novamente");
-						break;
-					case "Cansado":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} nem se mexeu...");
-						break;
-					case "Feliz":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} gostou de brincar com o seu dono");
-						break;
-					case "Triste":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} não estar para brincadeira e se vira...");
-						break;
-					case "Raiva":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} brinca com você mas o machuca sem querer");
-						break;
-					case "Medo":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} foge de você...");
-						break;
-                    default:
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} está dormindo");
-                        break;
-				}
+                Console.Clear();
+                MainMenu();
             }
-
-			if (userChoose == "1")
-			{
-				switch (temperamento)
+            else
+            {
+				if (userChoose == "3")
 				{
-					case "Enfurecido":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} morde sua mão quando você tenta se aproximar");
-						break;
-					case "Agitado":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} não para de se mover para aproveitar o carinho");
-						break;
-					case "Confortável":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} se aconchega em você e aproveita o cafuné");
-						break;
-					case "Cansado":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} nem se mexeu...");
-						break;
-					case "Feliz":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} aproveita o cafuné");
-						break;
-					case "Triste":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} nem se mexeu... mas parece estar gostando");
-						break;
-					case "Raiva":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} aproveita o cafuné, mas lembra que está com raiva e morde sua mão");
-						break;
-					case "Medo":
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} vê você se aproximando com a mão aberta e foge");
-						break;
-					default:
-						Console.WriteLine("");
-						Console.WriteLine($"{pokemon.ToUpper()} está dormindo");
-						break;
+					switch (temperamento)
+					{
+						case "Enfurecido":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} morde sua mão enquanto tenta pegar a comida, ele está alimentado!");
+							break;
+						case "Agitado":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} pega a comida e sai correndo para voltar a fazer coisas de {pokemon}");
+							break;
+						case "Confortável":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} come calmamente a comida em sua mão");
+							break;
+						case "Cansado":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} nem se mexeu...");
+							break;
+						case "Feliz":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} come alegremente a comida em sua mão");
+							break;
+						case "Triste":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} morde um pedaço e volta pro cantinho dele novamente...");
+							break;
+						case "Raiva":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} brinca com você mas o machuca sem querer");
+							break;
+						case "Medo":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} foge de você... mas volta porque está com fome");
+							break;
+						default:
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} está dormindo");
+							break;
+					}
 				}
+
+				if (userChoose == "2")
+				{
+					switch (temperamento)
+					{
+						case "Enfurecido":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} não quer brincar e está mais enfurecido!");
+							break;
+						case "Agitado":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} adorou a brincadeira e está mais agitado");
+							break;
+						case "Confortável":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} brinca um pouco mas logo se encontra deitado novamente");
+							break;
+						case "Cansado":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} nem se mexeu...");
+							break;
+						case "Feliz":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} gostou de brincar com o seu dono");
+							break;
+						case "Triste":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} não estar para brincadeira e se vira...");
+							break;
+						case "Raiva":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} brinca com você mas o machuca sem querer");
+							break;
+						case "Medo":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} foge de você...");
+							break;
+						default:
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} está dormindo");
+							break;
+					}
+				}
+
+				if (userChoose == "1")
+				{
+					switch (temperamento)
+					{
+						case "Enfurecido":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} morde sua mão quando você tenta se aproximar");
+							break;
+						case "Agitado":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} não para de se mover para aproveitar o carinho");
+							break;
+						case "Confortável":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} se aconchega em você e aproveita o cafuné");
+							break;
+						case "Cansado":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} nem se mexeu...");
+							break;
+						case "Feliz":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} aproveita o cafuné");
+							break;
+						case "Triste":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} nem se mexeu... mas parece estar gostando");
+							break;
+						case "Raiva":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} aproveita o cafuné, mas lembra que está com raiva e morde sua mão");
+							break;
+						case "Medo":
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} vê você se aproximando com a mão aberta e foge");
+							break;
+						default:
+							Console.WriteLine("");
+							Console.WriteLine($"{pokemon.ToUpper()} está dormindo");
+							break;
+					}
+				}
+
+				Console.WriteLine("");
+				Console.WriteLine("Atualizando status...");
+				Thread.Sleep(3000);
+				Console.Clear();
+				PokeStatus(pokemon);
 			}
 		}
 
